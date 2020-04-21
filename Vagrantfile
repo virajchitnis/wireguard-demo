@@ -22,6 +22,10 @@ Vagrant.configure("2") do |config|
       echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.d/wg.conf
       echo "net.ipv6.conf.all.forwarding = 1" >> /etc/sysctl.d/wg.conf
       sysctl --system
+      cp /vagrant/wireguard.ufw.conf /etc/ufw/applications.d/wireguard
+      ufw allow OpenSSH
+      ufw allow WireGuard
+      yes | ufw enable
     SHELL
 
     subconfig.vm.provision "shell", run: "always", inline: <<-SHELL
