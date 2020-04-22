@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
     subconfig.vm.provision "shell", inline: <<-SHELL
       add-apt-repository -y ppa:wireguard/wireguard
       apt-get update
-      apt-get install -y wireguard
+      apt-get install -y wireguard qrencode zsh
       echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.d/wg.conf
       echo "net.ipv6.conf.all.forwarding = 1" >> /etc/sysctl.d/wg.conf
       sysctl --system
