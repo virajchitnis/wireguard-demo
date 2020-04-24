@@ -1,0 +1,11 @@
+[Unit]
+Description=Tunnel TCP traffic to WireGuard
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/udp2raw_amd64_hw_aes -c -l0.0.0.0:51820 -r192.168.56.50:443 -k "passwd" --raw-mode faketcp -a
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
